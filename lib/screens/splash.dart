@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:food_delivery_app/constants/colors.dart';
+import 'package:food_delivery_app/screens/auth/Login.dart';
+import 'package:food_delivery_app/screens/auth/Signup.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'Home.dart';
 
@@ -12,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool isPressed = false;
 
   void toHomeScreen() {
     Future.delayed(
@@ -43,9 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           margin: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height - 250,
+            top: MediaQuery.of(context).size.height - 230,
           ),
           child: Column(
             children: [
@@ -59,11 +60,15 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.05),
               MaterialButton(
                 onPressed: () {
-                  toHomeScreen();
-
-                  setState(() {
-                    isPressed = !isPressed;
-                  });
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      duration: const Duration(milliseconds: 150),
+                      reverseDuration: const Duration(milliseconds: 1),
+                      type: PageTransitionType.rightToLeft,
+                      child: const LoginPage(),
+                    ),
+                  );
                 },
                 splashColor: AppColors.lightOrange,
                 height: MediaQuery.of(context).size.height * 0.08,
@@ -72,12 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: isPressed
-                    ? const SpinKitFadingCircle(
-                        color: Colors.white,
-                        size: 28.0,
-                      )
-                    : const Text(
+                child:  const Text(
                         "Login",
                         style: TextStyle(
                           fontSize: 20,
@@ -86,27 +86,36 @@ class _SplashScreenState extends State<SplashScreen> {
                         ),
                       ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
                     "Don't have an account? ",
                     style: TextStyle(
                       color: AppColors.white,
                       fontSize: 17,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
-                      print("signup pressed");
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          duration: const Duration(milliseconds: 120),
+                          reverseDuration: const Duration(milliseconds: 1),
+                          type: PageTransitionType.bottomToTop,
+                          child: const SignupPage(),
+                        ),
+                      );
                     },
                     child: const Text(
                       "Signup",
                       style: TextStyle(
                         decoration: TextDecoration.underline,
                         color: AppColors.white,
-                        fontSize: 17,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

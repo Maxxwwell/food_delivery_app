@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/screens/Home.dart';
+import 'package:food_delivery_app/screens/auth/Signup.dart';
 import 'package:food_delivery_app/screens/splash.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const SplashScreen(),
+      
     );
   }
 }
