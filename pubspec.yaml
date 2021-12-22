@@ -27,6 +27,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_spinkit: ^5.1.0
   page_transition: "^2.0.4"
+  flutter_staggered_animations: "^1.0.0"
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +43,7 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -55,9 +57,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Atiga
+    - family: volkswagen
       fonts:
-        - asset: assets/fonts/Atiga-Medium.ttf
+        - asset: assets/fonts/volkswagen-serial-bold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Atiga',
+        fontFamily: 'volkswagen',
         primarySwatch: Colors.blue,
       ),
       home: const SplashScreen(),
