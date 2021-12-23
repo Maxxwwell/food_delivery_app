@@ -7,17 +7,11 @@ import 'package:page_transition/page_transition.dart';
 
 import 'Home.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
   
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -75,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: const Text(
-                    "Login",
+                    "Sign in",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -108,10 +102,9 @@ class _SplashScreenState extends State<SplashScreen> {
                         );
                       },
                       child: const Text(
-                        "Signup",
+                        "Sign up",
                         style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: AppColors.white,
+                          color: AppColors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),

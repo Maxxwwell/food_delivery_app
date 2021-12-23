@@ -1,10 +1,13 @@
 // ignore_for_file: prefer_const_constructors, file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:food_delivery_app/constants/colors.dart';
 import 'package:food_delivery_app/screens/Home.dart';
+import 'package:food_delivery_app/screens/auth/Signup.dart';
+import 'package:food_delivery_app/widgets/BottomTabs.dart';
 import 'package:page_transition/page_transition.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,6 +18,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // Colored status bar
+  //   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //     statusBarColor: AppColors.orange,
+  //   ));
+  // }
+
   bool isPressed = false;
   bool viewPassword = false;
 
@@ -24,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
       () {
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (_) => const HomePage()),
+            MaterialPageRoute(builder: (_) => const BottomTabs()),
             (route) => false);
       },
     );
@@ -175,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                               size: 28.0,
                             )
                           : const Text(
-                              "Login",
+                              "Sign in",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -271,16 +283,16 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     duration: const Duration(milliseconds: 120),
-                            //     reverseDuration:
-                            //         const Duration(milliseconds: 1),
-                            //     type: PageTransitionType.bottomToTop,
-                            //     child: const HomePage(),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                duration: const Duration(milliseconds: 150),
+                                reverseDuration:
+                                    const Duration(milliseconds: 1),
+                                type: PageTransitionType.rightToLeft,
+                                child: const SignupPage(),
+                              ),
+                            );
                           },
                           child: const Text(
                             "Signup",
