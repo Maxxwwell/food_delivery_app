@@ -1,14 +1,11 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:food_delivery_app/constants/colors.dart';
 import 'package:food_delivery_app/screens/auth/Login.dart';
 import 'package:food_delivery_app/widgets/BottomTabs.dart';
 import 'package:page_transition/page_transition.dart';
-
-import '../Home.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -27,8 +24,21 @@ class _SignupPageState extends State<SignupPage> {
   //   ));
   // }
 
+  void submit() {
+    final isValid = _formKey.currentState!.validate();
+
+    if (isValid) {
+      _formKey.currentState!.save();
+    }
+  }
+
+  String? fullName;
+  String? email;
+  String? password;
   bool isPressed = false;
   bool viewPassword = false;
+
+  final _formKey = GlobalKey<FormState>();
 
   void toHomeScreen() {
     Future.delayed(
@@ -65,7 +75,7 @@ class _SignupPageState extends State<SignupPage> {
                 children: [
                   Container(
                     margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.12,
+                      top: MediaQuery.of(context).size.height * 0.09,
                     ),
                     child: Column(
                       children: const [
@@ -89,11 +99,24 @@ class _SignupPageState extends State<SignupPage> {
                   ),
 
                   Form(
+                    key: _formKey,
                     child: Column(
                       children: [
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.03),
                         TextFormField(
+                          key: const ValueKey('full name'),
+                          onSaved: (value) {
+                            fullName = value;
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !value.contains(" ") ||
+                                value.length < 6) {
+                              return 'Please enter your full name.';
+                            }
+                            return null;
+                          },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             hintText: 'Full name',
@@ -118,6 +141,19 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
+                          key: const ValueKey('email'),
+                          onSaved: (value) {
+                            email = value;
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !value.contains("@") ||
+                                !value.contains(".") ||
+                                value.length < 7) {
+                              return 'Please enter a valid email address.';
+                            }
+                            return null;
+                          },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             hintText: 'Email address',
@@ -142,6 +178,16 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
+                          key: const ValueKey('password'),
+                          onSaved: (value) {
+                            password = value;
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty || value.length < 7) {
+                              return 'Password must be at least 7 characters';
+                            }
+                            return null;
+                          },
                           obscureText: viewPassword,
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
@@ -206,10 +252,14 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                             ),
                       onPressed: () {
-                        toHomeScreen();
-                        setState(() {
-                          isPressed = !isPressed;
-                        });
+                        print(fullName);
+                        print(email);
+                        print(password);
+                        // toHomeScreen();
+                        submit();
+                        // setState(() {
+                        //   isPressed = !isPressed;
+                        // });
                       },
                     ),
                   ),

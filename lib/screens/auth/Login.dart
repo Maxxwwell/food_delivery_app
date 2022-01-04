@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors, file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:food_delivery_app/constants/colors.dart';
-import 'package:food_delivery_app/screens/Home.dart';
 import 'package:food_delivery_app/screens/auth/Signup.dart';
 import 'package:food_delivery_app/widgets/BottomTabs.dart';
 import 'package:page_transition/page_transition.dart';
@@ -27,8 +25,20 @@ class _LoginPageState extends State<LoginPage> {
   //   ));
   // }
 
+  void submit() {
+    final isValid = _formKey.currentState!.validate();
+
+    if (isValid) {
+      _formKey.currentState!.save();
+    }
+  }
+
+  String? email;
+  String? password;
   bool isPressed = false;
   bool viewPassword = false;
+
+  final _formKey = GlobalKey<FormState>();
 
   void toHomeScreen() {
     Future.delayed(
@@ -96,11 +106,25 @@ class _LoginPageState extends State<LoginPage> {
                   ),
 
                   Form(
+                    key: _formKey,
                     child: Column(
                       children: [
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.03),
                         TextFormField(
+                          key: const ValueKey('login email address'),
+                          onSaved: (value) {
+                            email = value;
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !value.contains("@") ||
+                                !value.contains(".") ||
+                                value.length < 7) {
+                              return 'Please enter a valid email address.';
+                            }
+                            return null;
+                          },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             hintText: 'Email address',
@@ -125,6 +149,16 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
+                          key: const ValueKey('loggin password'),
+                          onSaved: (value) {
+                            password = value;
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty || value.length < 7) {
+                              return 'Password must be at least 7 characters';
+                            }
+                            return null;
+                          },
                           obscureText: viewPassword,
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
@@ -195,10 +229,10 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                       onPressed: () {
-                        toHomeScreen();
-                        setState(() {
-                          isPressed = !isPressed;
-                        });
+                        // toHomeScreen();
+                        // setState(() {
+                        //   isPressed = !isPressed;
+                        // });
                       },
                     ),
                   ),

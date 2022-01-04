@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "312425142433",
+    "project_id": "food-ordering-app-dc590",
+    "storage_bucket": "food-ordering-app-dc590.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312425142433:android:9f512e452647cccf88b8e0",
+        "android_client_info": {
+          "package_name": "com.android_food_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312425142433-3bs4722l8a68uf12ctc63fm88nvl7ijr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR61vd3XlAIuYX8wLODWV1vjhUCih3L_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312425142433-3bs4722l8a68uf12ctc63fm88nvl7ijr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

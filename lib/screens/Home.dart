@@ -108,12 +108,12 @@ class _HomePageState extends State<HomePage>
                   const SizedBox(height: 10),
                   SingleChildScrollView(
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.55,
+                      height: MediaQuery.of(context).size.height * 0.6,
                       width: double.infinity,
                       child: TabBarView(
                         controller: _tabController,
                         physics: const BouncingScrollPhysics(),
-                        children: [
+                        children: const [
                           SandWichesPage(),
                           MeatPage(),
                           FoodPage(),
